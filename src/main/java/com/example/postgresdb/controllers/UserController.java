@@ -1,5 +1,6 @@
 package com.example.postgresdb.controllers;
 
+import com.example.postgresdb.filters.JwtInfo;
 import com.example.postgresdb.models.DemoUser;
 import com.example.postgresdb.service.IUserService;
 import java.util.List;
@@ -17,8 +18,11 @@ public class UserController {
   @Autowired
   IUserService iUserService;
 
+  @Autowired
+  JwtInfo jwtInfo;
   @GetMapping("/users")
   public List<DemoUser> getUsers(){
+    System.out.print("User in controller"+ jwtInfo);
     return iUserService.getAllUsers();
   }
 

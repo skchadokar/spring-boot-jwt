@@ -1,5 +1,6 @@
 package com.example.postgresdb.service;
 
+import com.example.postgresdb.filters.JwtInfo;
 import com.example.postgresdb.models.DemoUser;
 import com.example.postgresdb.repo.DemoUserRepo;
 import java.util.List;
@@ -11,8 +12,13 @@ public class UserService implements  IUserService{
 
   @Autowired
   DemoUserRepo demoUserRepo;
+
+  @Autowired
+  JwtInfo jwtInfo;
   @Override
   public List<DemoUser> getAllUsers() {
+
+   System.out.print("User in service"+ jwtInfo);
     return demoUserRepo.findAll();
   }
 
@@ -20,6 +26,7 @@ public class UserService implements  IUserService{
   public DemoUser saveUsers(DemoUser user) {
     return demoUserRepo.save(user);
   }
+
 
   @Override
   public void delUsers(Long id) {
